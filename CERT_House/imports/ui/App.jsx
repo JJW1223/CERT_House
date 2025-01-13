@@ -1,11 +1,22 @@
-import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import React, { useState } from 'react';
+import { Notice } from './Notice';
+import { NoticeForm } from './NoticeForm';
 
-export const App = () => (
-  <div>
-    <h1>Welcome to Meteor!</h1>
-    <Hello/>
-    <Info/>
-  </div>
-);
+export const App = () => {
+  const [currentPage, setCurrentPage] = useState('Notice');
+  
+  const goToNotice = () => {
+    setCurrentPage('Notice');
+  };
+
+  const goToWrite = () => {
+    setCurrentPage('Write');
+  };
+
+  return (
+    <div>
+      { currentPage === 'Notice' && <Notice /> }
+      { currentPage === 'Write' && <NoticeForm /> }
+    </div>
+  );
+};
