@@ -3,11 +3,19 @@ import React, { useState } from 'react';
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+
+    Meteor.call('users.login', username, password, (err, result) => {
+      if(err) {
+        // 로그인 에러 처리
+        setMessage(err.reason || '로그인 실패');
+      } else {
+        setMessage(result);
+      }
+    })
   };
 
   return (
@@ -34,6 +42,9 @@ export const Login = () => {
         </div>
         <button type="submit">로그인</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };
+
+// login ui
