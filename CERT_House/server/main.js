@@ -1,10 +1,10 @@
-const { Meteor } = require('meteor/meteor');
-const { NoticesCollection } = require('/imports/api/NoticesCollection');
+import { Meteor } from "meteor/meteor";
+import { NoticesCollection } from "/imports/api/NoticesCollection";
 require("../imports/api/NoticesPublications");
 require("../imports/api/noticesMethods");
 
 const insertNotice = (noticeText) =>
-  NoticesCollection.insertAsync({ text: noticeText });
+  NoticesCollection.insert({ text: noticeText }); // insertAsync -> insert
 
 Meteor.startup(async () => {
   if ((await NoticesCollection.find().countAsync()) === 0) {
@@ -18,4 +18,24 @@ Meteor.startup(async () => {
       "Seventh Task",
     ].forEach(insertNotice);
   }
+});
+
+// 공지사항 수정 메소드 정의
+Meteor.methods({
+  'notices.update'(noticeId, title, content) {
+    try {
+      const result = NoticesCollection.updateAsync(noticeId, { // update -> updateAsync
+        $set: {
+          title,
+          content,
+          updatedAt: new Date(),
+        },
+      });
+      if (result === 0) {
+        throw new Meteor.Error('update-failed', 'No document updated. Check if the noticeId is valid.');
+      }
+    } catch (error) {
+      throw new Meteor.Error('update-error', error.message);
+    }
+  },
 });
