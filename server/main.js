@@ -3,8 +3,15 @@ import { NoticesCollection } from "/imports/api/NoticesCollection";
 require("../imports/api/NoticesPublications");
 require("../imports/api/noticesMethods");
 
-const insertNotice = (noticeText) =>
-  NoticesCollection.insert({ text: noticeText }); // insertAsync -> insert
+const insertNotice = async (noticeText) => {
+  try {
+    await NoticesCollection.insertAsync({ text: noticeText });
+    console.log("Notice inserted successfully:", noticeText);
+  } catch (e) {
+    console.error("Error inserting notice:", e);
+  }
+};
+
 
 Meteor.startup(async () => {
   if ((await NoticesCollection.find().countAsync()) === 0) {
