@@ -1,5 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import jwt from 'jsonwebtoken';
+
+const USER_KEY = Meteor.settings.JWT_SECRET ; // 환경 변수 가져오기
+
 
 const Users = new Mongo.Collection('users');
 
@@ -8,7 +12,7 @@ if (Meteor.isServer) {
   Meteor.methods({
     // 회원가입
     async 'users.signup'(username, password) {
-      // 중복 아이디 확인 (비동기 함수 사용)
+      // 중복 아이디 확인
       const existingUser = await Users.findOneAsync({ username });
       if (existingUser) {
         throw new Meteor.Error('duplicate-username', '이미 사용중인 아이디입니다.');
@@ -37,7 +41,24 @@ if (Meteor.isServer) {
         throw new Meteor.Error('membership-denied', '회원 승인이 필요합니다.');
       }
 
-      return '로그인 성공!';
+      // JWT 생성
+      const token = jwt.sign(
+        { userId: user._id, username: user.username },
+        USER_KEY,
+        { expiresIn: '1h' }
+      );
+
+      return { message: '로그인 성공!', token };
+    },
+
+    // 토큰 검증
+    async 'protected.route'(token) {
+      try {
+        const decoded = jwt.verify(token, USER_KEY);
+        return `안녕하세요, ${decoded.username}님!`;
+      } catch (err) {
+        throw new Meteor.Error('invalid-token', '유효하지 않은 토큰입니다.');
+      }
     },
   });
 }

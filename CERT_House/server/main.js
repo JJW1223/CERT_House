@@ -1,5 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
+require("dotenv").config();
+
+console.log(Meteor.settings.JWT_SECRET); // 디버깅용 로그
+console.log("서버 시작");
 
 import '../imports/api/users.js'; // users.js 파일을 가져옵니다.
 

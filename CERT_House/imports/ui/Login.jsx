@@ -13,7 +13,9 @@ export const Login = () => {
         // 로그인 에러 처리
         setMessage(err.reason || '로그인 실패');
       } else {
-        setMessage(result);
+        const {token}=result;
+        localStorage.setItem('token', token); //JWT 로컬에 저장
+        setMessage(result.message);
       }
     })
   };
