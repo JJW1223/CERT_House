@@ -13,5 +13,21 @@ Meteor.methods({
 
         return NoticesCollection.removeAsync({ _id: noticeId });
     },
+    "notices.update"(noticeId, title, content){
+        try{
+            const result = NoticesCollection.updateAsync(noticeId, {
+                $set: {
+                    title,
+                    content,
+                    updatedAt: new Date(),
+                },
+            });
+            if(result === 0){
+                throw new Meteor.Error('update-failed')
+            }
+        } catch (error) {
+            throw new Meteor.Error('update-failed', 'No document updated. Check if the noticeId is valid.');
+        }
+    },
 });
 

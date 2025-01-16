@@ -27,22 +27,3 @@ Meteor.startup(async () => {
   }
 });
 
-// 공지사항 수정 메소드 정의
-Meteor.methods({
-  'notices.update'(noticeId, title, content) {
-    try {
-      const result = NoticesCollection.updateAsync(noticeId, { // update -> updateAsync
-        $set: {
-          title,
-          content,
-          updatedAt: new Date(),
-        },
-      });
-      if (result === 0) {
-        throw new Meteor.Error('update-failed', 'No document updated. Check if the noticeId is valid.');
-      }
-    } catch (error) {
-      throw new Meteor.Error('update-error', error.message);
-    }
-  },
-});
