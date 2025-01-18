@@ -1,7 +1,10 @@
 import { Meteor } from "meteor/meteor";
 import { NoticesCollection } from "/imports/api/NoticesCollection";
+import { CommentsCollection } from "/imports/api/CommentsCollection";
 require("../imports/api/NoticesPublications");
 require("../imports/api/noticesMethods");
+require("../imports/api/CommentsPublications");
+require("../imports/api/commentsMethods");
 
 const insertNotice = async (noticeText) => {
   try {
@@ -12,6 +15,14 @@ const insertNotice = async (noticeText) => {
   }
 };
 
+const insertComment = async (commentText) => {
+  try {
+    await CommentsCollection.insertAsync({ text: commentText });
+    console.log("Comment inserted successfully:", commentText);
+  } catch (e) {
+    console.error("Error inserting comment:", e);
+  }
+};
 
 Meteor.startup(async () => {
   if ((await NoticesCollection.find().countAsync()) === 0) {
@@ -24,6 +35,12 @@ Meteor.startup(async () => {
       "Sixth Task",
       "Seventh Task",
     ].forEach(insertNotice);
+  }
+  if ((await CommentsCollection.find().countAsync()) === 0) {
+    [
+      "First Comment",
+      "Second Comment"
+    ].forEach(insertComment);
   }
 });
 
