@@ -10,6 +10,8 @@ export const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');
     const [currentNotice, setCurrentNotice] = useState(null);
     const [newComment, setNewComment] = useState('');
+    const [editComment, setEditComment] = useState('');
+    const [editingCommentId, setEditingCommentId] = useState(null);
 
     const notices = useTracker(() => {
         const handle = Meteor.subscribe('notices');
@@ -57,6 +59,35 @@ export const Notice = () => {
                 setNewComment('');
             }
         });
+    };
+
+    const editCommentHandler = () => {
+        if (!editComment.trim()) {
+            alert('수정할 댓글을 입력하세요.');
+            return;
+        }
+
+        Meteor.call('comments.update', editingCommentId, editComment, (error) => {
+            if (error) {
+                alert("댓글 수정 중 오류 발생: " + error.message);
+            } else {
+                alert("댓글이 수정되었습니다.");
+                setEditComment('');
+                setEditingCommentId(null);
+            }
+        });
+    };
+
+    const deleteComment = (commentId) => {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            Meteor.call('comments.delete', commentId, (error) => {
+                if (error) {
+                    alert("댓글 삭제 중 오류 발생: " + error.message);
+                } else {
+                    alert("댓글이 삭제되었습니다.");
+                }
+            });
+        }
     };
 
     const goToWrite = () => {
@@ -118,7 +149,28 @@ export const Notice = () => {
                     <button onClick={addComment}>댓글 추가</button>
                     <ul>
                         {comments.map((comment) => (
-                            <li key={comment._id}>{comment.content}</li>
+                            <li key={comment._id}>
+                                {editingCommentId === comment._id ? (
+                                    <div>
+                                        <input
+                                            type="text"
+                                            value={editComment}
+                                            onChange={(e) => setEditComment(e.target.value)}
+                                        />
+                                        <button onClick={editCommentHandler}>수정 완료</button>
+                                        <button onClick={() => setEditingCommentId(null)}>취소</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <span>{comment.content}</span>
+                                        <button onClick={() => {
+                                            setEditingCommentId(comment._id);
+                                            setEditComment(comment.content);
+                                        }}>수정</button>
+                                        <button onClick={() => deleteComment(comment._id)}>삭제</button>
+                                    </div>
+                                )}
+                            </li>
                         ))}
                     </ul>
                 </div>
