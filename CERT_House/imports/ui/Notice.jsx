@@ -14,7 +14,7 @@ export const Notice = () => {
     const notices = useTracker(() => {
         const handle = Meteor.subscribe('notices');
         if (!handle.ready()) {
-            return []; // 데이터가 준비되지 않았을 때 빈 배열 반환
+            return []; 
         }
         return NoticesCollection.find({}, { sort: { createdAt: -1 } }).fetch();
     });

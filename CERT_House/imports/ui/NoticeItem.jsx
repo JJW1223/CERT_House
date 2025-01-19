@@ -5,7 +5,6 @@ export const NoticeItem = ({ notice }) => {
         <li>
             <h2>{notice.title}</h2>
             <p>{notice.content}</p>
-            {/* <p>{notice.createdAt.toString()}</p> */}
         </li>
     );
 };
