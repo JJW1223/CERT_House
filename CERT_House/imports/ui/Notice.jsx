@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useTracker, useSubscribe } from "meteor/react-meteor-data";
-import { NoticesCollection } from "/imports/api/NoticesCollection"
+import  { NoticesCollection } from "/imports/api/NoticesCollection"
 import { CommentsCollection } from "/imports/api/CommentsCollection"
-import { NoticeForm } from "./NoticeForm"
-import { NoticeItem } from "./NoticeItem"
-import { NoticeEdit } from "./NoticeEdit";
+import  NoticeForm  from "./NoticeForm"
+import  NoticeItem  from "./NoticeItem"
+import  NoticeEdit  from "./NoticeEdit";
 
 const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');

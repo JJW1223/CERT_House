@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <Router>
       <div>
-        <h1>Welcome to Meteor!</h1>
+        
 
         {/* 네비게이션 바 */}
         <nav>
