@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NoticesCollection } from "/imports/api/NoticesCollection";
 
-export const NoticeEdit = ({ notice, goBack }) => {
+const NoticeEdit = ({ notice, goBack }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -47,3 +47,5 @@ export const NoticeEdit = ({ notice, goBack }) => {
         </div>
     );
 };
+
+export default NoticeEdit;

@@ -6,7 +6,7 @@ import { NoticeForm } from "./NoticeForm"
 import { NoticeItem } from "./NoticeItem"
 import { NoticeEdit } from "./NoticeEdit";
 
-export const Notice = () => {
+const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');
     const [currentNotice, setCurrentNotice] = useState(null);
     const [newComment, setNewComment] = useState('');
@@ -132,3 +132,5 @@ export const Notice = () => {
 
     return null;
 };
+
+export default Notice;

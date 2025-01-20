@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Login = () => {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -48,5 +48,7 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
 
 // login ui

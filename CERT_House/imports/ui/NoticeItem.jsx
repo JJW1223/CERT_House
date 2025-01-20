@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const NoticeItem = ({ notice }) => {
+const NoticeItem = ({ notice }) => {
     return (
         <li>
             <h2>{notice.title}</h2>
@@ -8,3 +8,5 @@ export const NoticeItem = ({ notice }) => {
         </li>
     );
 };
+
+export default NoticeItem;

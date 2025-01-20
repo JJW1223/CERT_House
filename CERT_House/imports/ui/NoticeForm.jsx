@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NoticesCollection } from "/imports/api/NoticesCollection";
 
-export const NoticeForm = ({ goBack }) => {
+const NoticeForm = ({ goBack }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -43,3 +43,5 @@ export const NoticeForm = ({ goBack }) => {
     </div>
   );
 };
+
+export default NoticeForm;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-export const Signup = () => {
+const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -47,3 +47,5 @@ export const Signup = () => {
     </div>
   );
 };
+
+export default Signup;
