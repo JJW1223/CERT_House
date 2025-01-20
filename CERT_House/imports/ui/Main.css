@@ -1,0 +1,45 @@
+.main-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .club-introduction,
+  .member-profiles,
+  .awards {
+    margin-bottom: 40px;
+  }
+  
+  .club-logo {
+    width: 100px; /* 로고 크기 조정 */
+    height: auto;
+  }
+  
+  .profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 프로필 간격 */
+  }
+  
+  .profile {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 150px; /* 프로필 카드 너비 */
+  }
+  
+  .profile-img {
+    width: 100%; /* 프로필 사진 크기 조정 */
+    border-radius: 50%; /* 원형 이미지 */
+  }
+  
+  .role {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .introduction {
+    font-style: italic;
+    color: #777;
+  }
+  
