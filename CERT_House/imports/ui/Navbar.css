@@ -4,7 +4,7 @@ nav {
     justify-content: space-between; /* 양 끝으로 배치 */
     align-items: center; /* 세로 정렬 */
     padding: 10px 20px; /* 패딩 추가 */
-    background-color: #333; /* 배경색 설정 */
+    background-color: #000000; /* 배경색 설정 */
   }
   
   nav ul {

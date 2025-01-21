@@ -1,45 +1,246 @@
 .main-container {
     padding: 20px;
     font-family: Arial, sans-serif;
-  }
-  
-  .club-introduction,
-  .member-profiles,
-  .awards {
+    background-color: black; /* 배경색을 검정색으로 설정 */
+}
+
+/* 클럽 소개 섹션 */
+.club-introduction {
+    position: relative;
+    overflow: hidden; /* 자식 요소가 부모를 넘지 않도록 설정 */
+    background-color: black; /* 배경색을 검정색으로 설정 */
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* 아래에서 올라오는 효과 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 클럽 소개 섹션에 애니메이션 추가 (한 번만 실행) */
+.club-introduction {
     margin-bottom: 40px;
-  }
-  
-  .club-logo {
-    width: 100px; /* 로고 크기 조정 */
+    animation: fadeIn 0.8s ease-out; /* 애니메이션 적용 */
+    color: white;
+}
+
+/* 클럽 로고 스타일 */
+.club-logo {
+    width: 20%; /* 로고 크기 조정 */
     height: auto;
-  }
-  
-  .profiles {
+    animation: fadeIn 0.8s ease-out forwards; /* 애니메이션을 한 번만 실행 */
+    display: block; /* 블록 요소로 설정하여 중앙 정렬 가능 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* CERT 알파벳 스타일 */
+.cert-title {
+    text-align: center; /* 중앙 정렬 */
+    margin-top: 30px;
+    margin-bottom: 50px; /* 위아래 여백 */
+}
+
+
+.cert-row{
+    display: flex; /* 수평 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+}
+
+.cert-row-0{
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+}
+
+.cert-row-1,
+.cert-row-2,
+.cert-row-3,
+.cert-row-4 {
+    justify-content: center; /* 중앙 정렬 */
+    padding: 4px;
+}
+
+
+
+.cert-letter {
+    font-size: 3rem; /* 글자 크기 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    animation: float 1s ease-out forwards; /* 애니메이션 */
+    margin: 0 10px; /* 글자 간격 조정 */
+    opacity: 0; /* 초기 불투명도 */
+    font-weight: 100; /* 글자 두께를 줄임 (Light) */
+    
+}
+
+.cert-letter-title {
+    font-size: 3rem; /* 글자 크기 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    animation: float 1s ease-out forwards; /* 애니메이션 */
+    margin: 0 20px; /* 글자 간격 조정 */
+    opacity: 0; /* 초기 불투명도 */
+}
+
+.cert-letter-1,
+.cert-letter-2,
+.cert-letter-3,
+.cert-letter-4 {
+    font-size: 2rem; /* 글자 크기 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    animation: float 1s ease-out forwards; /* 애니메이션 */
+    margin: 0 20px; /* 글자 간격 조정 */
+    opacity: 0; /* 초기 불투명도 */
+}
+
+
+.cert-letter-1:nth-child(1),
+.cert-letter-2:nth-child(1),
+.cert-letter-3:nth-child(1),
+.cert-letter-4:nth-child(1) {
+    animation-delay: 1s; 
+}
+.cert-letter-1:nth-child(2),
+.cert-letter-2:nth-child(2),
+.cert-letter-3:nth-child(2),
+.cert-letter-4:nth-child(2) {
+    animation-delay: 1.2s; /* m 애니메이션 지연 */
+}
+.cert-letter-1:nth-child(3),
+.cert-letter-2:nth-child(3),
+.cert-letter-3:nth-child(3),
+.cert-letter-4:nth-child(3) {
+    animation-delay: 1.4s; /* p 애니메이션 지연 */
+}
+.cert-letter-1:nth-child(4),
+.cert-letter-2:nth-child(4),
+.cert-letter-3:nth-child(4),
+.cert-letter-4:nth-child(4) {
+    animation-delay: 1.6s; /* u 애니메이션 지연 */
+}
+.cert-letter-1:nth-child(5),
+.cert-letter-2:nth-child(5),
+.cert-letter-3:nth-child(5) {
+    animation-delay: 1.8s; /* t 애니메이션 지연 */
+}
+.cert-letter-1:nth-child(6),
+.cert-letter-2:nth-child(6),
+.cert-letter-3:nth-child(6),
+.cert-letter-4:nth-child(6) {
+    animation-delay: 2s; /* e 애니메이션 지연 */
+}
+.cert-letter-1:nth-child(7),
+.cert-letter-2:nth-child(7),
+.cert-letter-3:nth-child(7),
+.cert-letter-4:nth-child(7) {
+    animation-delay: 2.2s; /* r 애니메이션 지연 */
+}
+
+.cert-letter-2:nth-child(8){
+    animation-delay: 2.4s; 
+}
+
+
+
+/* 애니메이션 설정 */
+@keyframes float {
+    0% {
+        transform: translateY(20px); /* 아래에서 시작 */
+        opacity: 0; /* 시작할 때 보이지 않음 */
+    }
+    100% {
+        transform: translateY(0); /* 제자리로 돌아옴 */
+        opacity: 1; /* 최종적으로 보이도록 */
+    }
+}
+
+/* 설명 텍스트 스타일 */
+.cert-description {
+    text-align: center; /* 중앙 정렬 */
+    color: #ffffff; /* 설명 글자 색깔 */
+    font-size: 1.5rem; /* 설명 글자 크기 */
+}
+
+/* 애니메이션 적용 */
+.cert-letter:nth-child(1) {
+    animation-delay: 0s; /* C 애니메이션 지연 없음 */
+}
+
+.cert-letter:nth-child(2) {
+    animation-delay: 0s; /* E 애니메이션 지연 없음 */
+}
+
+.cert-letter:nth-child(3) {
+    animation-delay: 0s; /* R 애니메이션 지연 없음 */
+}
+
+.cert-letter:nth-child(4) {
+    animation-delay: 0s; /* T 애니메이션 지연 없음 */
+}
+
+.introduction-text{
+    margin-top:100px;
+    margin-bottom: 100px;
+}
+
+.introduction-text h1 {
+    font-size: 2.5rem; /* 원하는 글자 크기로 조정 */
+    color: white; /* 글자 색상을 흰색으로 설정 (필요에 따라 변경) */
+}
+.introduction-text p {
+    font-size: 1.5rem; /* 원하는 글자 크기로 조정 */
+    color: white; /* 글자 색상을 흰색으로 설정 (필요에 따라 변경) */
+}
+
+.member-profiles{
+    margin-bottom: 100px;
+    color: white;
+}
+.member-profiles h2{
+    font-size: 2.5rem;
+}
+/* 프로필 관련 스타일 */
+.profiles {
     display: flex;
     flex-wrap: wrap;
     gap: 20px; /* 프로필 간격 */
-  }
-  
-  .profile {
+}
+
+.profile {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     text-align: center;
     width: 150px; /* 프로필 카드 너비 */
-  }
-  
-  .profile-img {
+    color: white;
+}
+
+.profile-img {
     width: 100%; /* 프로필 사진 크기 조정 */
     border-radius: 50%; /* 원형 이미지 */
-  }
-  
-  .role {
+}
+
+.role {
     font-weight: bold;
-    color: #555;
-  }
-  
-  .introduction {
+    color: #767676;
+    font-size: 15px;
+}
+
+.introduction {
     font-style: italic;
     color: #777;
-  }
-  
+    font-size: 15px;
+}
+
+.awards{
+
+    color: white;
+    margin-bottom :300px;
+}
+.awards h2{
+
+    font-size: 2.5rem;
+}
