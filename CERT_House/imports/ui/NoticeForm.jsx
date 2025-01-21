@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NoticesCollection } from "/imports/api/NoticesCollection";
+import './NoticeForm.css'; // CSS 파일 임포트
 
 const NoticeForm = ({ goBack }) => {
   const [title, setTitle] = useState('');
@@ -20,8 +20,13 @@ const NoticeForm = ({ goBack }) => {
   };
 
   return (
-    <div>
+    <div className="notice-form-container">
       <h1>공지사항 작성</h1>
+      <div className="divider"></div> 
+      <div className="button-container">
+        <button type="button" onClick={goBack}>취소</button>
+          <button type="submit">등록</button>
+        </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -36,10 +41,10 @@ const NoticeForm = ({ goBack }) => {
           placeholder="내용"
           required
         />
-        <button type="submit">등록</button>
+        
+        {/* 버튼을 감싸는 div 추가 */}
+        
       </form>
-
-      <button onClick={goBack}>취소</button>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useTracker, useSubscribe } from "meteor/react-meteor-data";
-import  { NoticesCollection } from "/imports/api/NoticesCollection"
-import { CommentsCollection } from "/imports/api/CommentsCollection"
-import  NoticeForm  from "./NoticeForm"
-import  NoticeItem  from "./NoticeItem"
-import  NoticeEdit  from "./NoticeEdit";
+import { useTracker } from "meteor/react-meteor-data";
+import { NoticesCollection } from "/imports/api/NoticesCollection";
+import { CommentsCollection } from "/imports/api/CommentsCollection";
+import NoticeForm from "./NoticeForm";
+import NoticeItem from "./NoticeItem";
+import NoticeEdit from "./NoticeEdit";
+import './Notice.css'; // CSS 파일 임포트
 
 const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');
@@ -21,11 +22,11 @@ const Notice = () => {
 
     const comments = useTracker(() => {
         const handle = Meteor.subscribe('comments');
-        if (!handle.ready()){
+        if (!handle.ready()) {
             return [];
         }
         return CommentsCollection.find({ noticeId: currentNotice?._id }, { sort: { createdAt: -1 } }).fetch();
-    })
+    });
 
     const deleteNotice = () => {
         if (confirm("정말로 삭제하시겠습니까?")) {
@@ -74,63 +75,61 @@ const Notice = () => {
         setCurrentNotice(null);
     };
 
-    if (currentPage === 'Notice') {
-        return (
-            <div>
-                <h1>공지사항</h1>
-                <ul>
+    return (
+        <div className="notice-container"> 
+            <h1 className="notice-title">공지사항</h1> 
+            <div className="divider"></div> 
+            <button onClick={goToWrite}>글쓰기</button> 
+            {currentPage === 'Notice' && (
+                <div className="notice-list"> 
                     {notices.map((notice) => (
-                        <div key={notice._id} onClick={() => handleNoticeClick(notice)}>
+                        <div key={notice._id} className="notice-item" onClick={() => handleNoticeClick(notice)}>
                             <NoticeItem notice={notice} />
                         </div>
                     ))}
-                </ul>
-                <button onClick={goToWrite}>글쓰기</button>
-            </div>
-        );
-    }
-
-    if (currentPage === 'write') {
-        return <NoticeForm goBack={goBack} />;
-    }
-
-    if (currentPage === 'detail' && currentNotice) {
-        return (
-            <div>
-                <h1>{currentNotice.title}</h1>
-                <p>{currentNotice.content}</p>
-                <button onClick={() => {
-                    setCurrentPage('edit'); //수정 페이지로 이동
-                    setCurrentNotice(currentNotice);
-                }}>수정하기</button>
-                <button onClick={goBack}>뒤로 가기</button>
-                <button onClick={deleteNotice}>삭제</button>
-
-                <hr />
-                <h2>댓글</h2>
-                <div>                
-                    <input
-                        type="text"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        placeholder="댓글을 입력하세요"
-                    />
-                    <button onClick={addComment}>댓글 추가</button>
-                    <ul>
-                        {comments.map((comment) => (
-                            <li key={comment._id}>{comment.content}</li>
-                        ))}
-                    </ul>
                 </div>
-            </div>
-        );
-    }
+            )}
 
-    if (currentPage === 'edit' && currentNotice) {
-        return <NoticeEdit notice={currentNotice} goBack={goBack} />;
-    }
+            {currentPage === 'write' && <NoticeForm goBack={goBack} />}
 
-    return null;
+            {currentPage === 'detail' && currentNotice && (
+                <>
+                    <h1 className="current-notice-title">{currentNotice.title}</h1> {/* 제목에 클래스 추가 */}
+                    <p className="current-notice-content">{currentNotice.content}</p> {/* 콘텐츠에 클래스 추가 */}
+
+                    <button onClick={goBack}>뒤로 가기</button>
+
+                    <button onClick={() => {
+                        setCurrentPage('edit'); // 수정 페이지로 이동
+                        setCurrentNotice(currentNotice);
+                    }}>수정하기</button>
+                    
+                    <button onClick={deleteNotice}>삭제</button>
+
+                    <div className="divier"></div>
+                    <h2>댓글</h2>
+                    <div>                
+                        <input
+                            type="text"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder="댓글을 입력하세요"
+                        />
+                        <button onClick={addComment}>댓글 추가</button>
+                        <ul>
+                            {comments.map((comment) => (
+                                <li key={comment._id}>{comment.content}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
+            )}
+
+            {currentPage === 'edit' && currentNotice && (
+                <NoticeEdit notice={currentNotice} goBack={goBack} />
+            )}
+        </div>
+    );
 };
 
 export default Notice;

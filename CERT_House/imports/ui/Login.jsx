@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,15 +14,15 @@ const Login = () => {
         // 로그인 에러 처리
         setMessage(err.reason || '로그인 실패');
       } else {
-        const {token}=result;
-        localStorage.setItem('token', token); //JWT 로컬에 저장
+        const { token } = result;
+        localStorage.setItem('token', token); // JWT 로컬에 저장
         setMessage(result.message);
       }
-    })
+    });
   };
 
   return (
-    <div>
+    <div className="login-container"> {/* 컨테이너 추가 */}
       <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -50,5 +51,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// login ui

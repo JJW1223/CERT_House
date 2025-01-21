@@ -1,0 +1,100 @@
+/* Notice.css */
+.notice-container {
+    background-color: black; /* 배경색을 검정색으로 설정 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    padding: 20px; /* 내부 여백 */
+    max-width: 100%; /* 최대 너비 100%로 설정하여 화면에 꽉 차게 */
+    height: 100vh; /* 높이를 화면 전체로 설정 */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+}
+
+.notice-container {
+    padding: 20px; /* 내부 여백 */
+}
+
+.notice-title {
+    text-align: left; /* 제목 왼쪽 정렬 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
+}
+
+.divider {
+    border-top: 1px solid #444; /* 상단에 선 추가 */
+    margin: 10px 0; /* 위아래 여백 */
+}
+
+/* 현재 공지사항 제목과 내용에 대한 스타일 */
+.current-notice-title {
+    background-color: #222; /* 배경색 설정 */
+    color: white; /* 글자색 설정 */
+    padding: 15px; /* 내부 여백 */
+
+}
+
+.current-notice-content {
+    background-color: #222; /* 배경색 설정 */
+    color: white; /* 글자색 설정 */
+    padding: 30px; /* 내부 여백 */
+    min-height: 200px; /* 최소 높이 설정 */
+}
+
+.notice-title {
+    text-align: left; /* 제목 왼쪽 정렬 */
+    margin-bottom: 50px; /* 제목 아래 여백 */
+}
+
+.notice-list {
+    list-style-type: none; /* 리스트 스타일을 없앰 */
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+.notice-item {
+    background-color: #333; /* 항목 배경색 */
+    margin: 10px 0; /* 항목 간의 여백 */
+    padding: 15px; /* 항목 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s; /* 호버 시 배경색 전환 효과 */
+}
+
+.notice-item:hover {
+    background-color: #444; /* 호버 시 배경색 변경 */
+}
+
+.notice-container h1,
+.notice-container h2 {
+    margin: 10px 0; /* 제목 위아래 여백 */
+}
+
+.notice-container button {
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    padding: 10px 15px; /* 버튼 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 포인터 커서 */
+    margin: 5px; /* 버튼 간의 여백 */
+    transition: background-color 0.3s; /* 호버 시 배경색 전환 효과 */
+}
+
+.notice-container button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.notice-container input {
+    width: 100%; /* 입력창 너비 100% */
+    padding: 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: 1px solid #444; /* 입력창 테두리 색상 */
+    background-color: #222; /* 입력창 배경색 */
+    color: white; /* 입력창 글자색 */
+    margin-bottom: 10px; /* 입력창 아래 여백 */
+}
+
+.notice-container input::placeholder {
+    color: #aaa; /* 플레이스홀더 색상 */
+}
+
+.notice-container li {
+    margin: 5px 0; /* 댓글 간의 간격 */
+}
