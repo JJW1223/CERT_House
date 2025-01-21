@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
 
     Meteor.call('users.login', username, password, (err, result) => {
-      if(err) {
+      if (err) {
         // 로그인 에러 처리
         setMessage(err.reason || '로그인 실패');
       } else {
@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container"> {/* 컨테이너 추가 */}
+    <div className="login-container"> {/* 로그인 UI를 감싸는 div 추가 */}
       <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
         <div>
