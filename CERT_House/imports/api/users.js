@@ -60,6 +60,11 @@ if (Meteor.isServer) {
         throw new Meteor.Error('invalid-token', '유효하지 않은 토큰입니다.');
       }
     },
+
+    'users.logout'() {
+      return { message: '로그아웃 성공!' };
+    },
+
   });
 }
 

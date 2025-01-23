@@ -1,45 +1,62 @@
 /* imports/ui/Navbar.css */
 nav {
-    display: flex;
-    justify-content: space-between; /* 양 끝으로 배치 */
-    align-items: center; /* 세로 정렬 */
-    padding: 10px 20px; /* 패딩 추가 */
-    background-color: #000000; /* 배경색 설정 */
-  }
-  
-  nav ul {
-    list-style: none; /* 불릿 제거 */
-    margin: 0; /* 기본 margin 제거 */
-    padding: 0; /* 기본 padding 제거 */
-    display: flex; /* 가로로 나열 */
-    align-items: center; /* 세로 중앙 정렬 */
-  }
-  
-  nav li {
-    margin-right: 20px; /* 각 항목 간격 */
-  }
-  
-  nav a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: white; /* 기본 글자색 흰색 */
-  }
-  
-  nav .cert {
-    font-weight: bold; /* 굵은 글씨 */
-    font-size: 24px; /* CERT 글자의 크기 */
-  }
-  
-  nav .notices {
-    font-size: 18px; /* Notices 글자의 크기 */
-  }
-  
-  nav .login-signup {
-    display: flex; /* 로그인과 회원가입을 나란히 배치 */
-    margin-left: auto; /* 오른쪽으로 배치 */
-  }
-  
-  nav .login-signup a {
-    font-size: 14px; /* 로그인, 회원가입 글자의 크기 */
-    margin-left: 10px; /* 간격 조정 */
-  }
-  
+  display: flex;
+  justify-content: space-between; /* 양 끝으로 배치 */
+  align-items: center; /* 세로 정렬 */
+  padding: 10px 20px; /* 패딩 추가 */
+  background-color: #000000; /* 배경색 설정 */
+}
+
+nav ul {
+  list-style: none; /* 불릿 제거 */
+  margin: 0; /* 기본 margin 제거 */
+  padding: 0; /* 기본 padding 제거 */
+  display: flex; /* 가로로 나열 */
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+nav li {
+  margin-right: 20px; /* 각 항목 간격 */
+}
+
+nav a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: white; /* 기본 글자색 흰색 */
+}
+
+nav .cert {
+  font-weight: bold; /* 굵은 글씨 */
+  font-size: 24px; /* CERT 글자의 크기 */
+}
+
+nav .notices {
+  font-size: 18px; /* Notices 글자의 크기 */
+}
+
+nav .login-signup {
+  display: flex; /* 로그인과 회원가입을 나란히 배치 */
+  margin-left: auto; /* 오른쪽으로 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+nav .nav-link {
+  font-size: 14px; /* 로그인, 회원가입 글자의 크기 */
+  margin-left: 10px; /* 간격 조정 */
+}
+
+nav .username {
+  font-size: 14px; /* 사용자 이름 글자의 크기 */
+  margin-right: 10px; /* 간격 조정 */
+  color: white; /* 사용자 이름 색상 */
+}
+
+nav .logout-button {
+  font-size: 14px; /* 로그아웃 버튼 글자의 크기 */
+  margin-left: 10px; /* 간격 조정 */
+  color: white; /* 버튼 글자색 흰색 */
+  background: none; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 커서 변경 */
+}
+
+

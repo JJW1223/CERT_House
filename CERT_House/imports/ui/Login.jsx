@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'; // react-router-dom v5
 import './Login.css';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const history = useHistory(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     Meteor.call('users.login', username, password, (err, result) => {
       if (err) {
-        // 로그인 에러 처리
         setMessage(err.reason || '로그인 실패');
       } else {
         const { token } = result;
-        localStorage.setItem('token', token); // JWT 로컬에 저장
+        localStorage.setItem('token', token); 
+        onLogin(username); 
         setMessage(result.message);
+        history.push('/'); // 로그인 시 메인 페이지로 이동
       }
     });
   };
 
   return (
-    <div className="login-container"> {/* 로그인 UI를 감싸는 div 추가 */}
+    <div className="login-container">
       <h2>로그인</h2>
       <form onSubmit={handleSubmit}>
         <div>
