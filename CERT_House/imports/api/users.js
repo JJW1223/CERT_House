@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const USER_KEY = Meteor.settings.JWT_SECRET ; // 환경 변수 가져오기
 
-
 const Users = new Mongo.Collection('users');
 
 if (Meteor.isServer) {

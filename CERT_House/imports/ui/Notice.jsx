@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useTracker } from "meteor/react-meteor-data";
 import { NoticesCollection } from "/imports/api/NoticesCollection";
 import { CommentsCollection } from "/imports/api/CommentsCollection";
+import { Users } from "/imports/api/users";
 import NoticeForm from "./NoticeForm";
 import NoticeItem from "./NoticeItem";
 import NoticeEdit from "./NoticeEdit";
 import './Notice.css'; // CSS 파일 임포트
+import jwt_decode from 'jwt-decode';
 
 const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');
@@ -28,11 +30,18 @@ const Notice = () => {
         return CommentsCollection.find({ noticeId: currentNotice?._id }, { sort: { createdAt: -1 } }).fetch();
     });
 
+    const users = useTracker(() => {
+        const handle = Meteor.subscribe('users');
+        if (!handle.ready()){
+            return [];
+        }
+        return Users.find().fetch();
+    });
+
     const deleteNotice = () => {
         if (confirm("정말로 삭제하시겠습니까?")) {
             Meteor.call("notices.delete", currentNotice._id, (error) => {
                 if (error) {
-                    alert("오류가 발생: " + error.message);
                 } else {
                     alert("글이 정상적으로 삭제 되었습니다.");
                     goBack();
@@ -46,18 +55,34 @@ const Notice = () => {
             alert('댓글을 입력하세요.');
             return;
         }
+        const token = localStorage.getItem('token');
+        if(!token){
+            alert("로그인 후 댓글을 추가할 수 있습니다.");
+            return;
+        }
+        try {
+            const decoded = jwt_decode.jwtDecode(token);
+            const userId = decoded.userId;
+            const userName = decoded.username; 
+            console.log(userId, userName);
 
-        Meteor.call('comments.insert', {
-            noticeId: currentNotice._id,
-            content: newComment,
-        }, (error) => {
-            if (error) {
-                alert("댓글 추가 중 오류 발생: " + error.message);
-            } else {
-                alert("성공적으로 댓글을 달았습니다");
-                setNewComment('');
-            }
-        });
+            Meteor.call('comments.insert', {
+                noticeId: currentNotice._id,
+                content: newComment,
+                userId: userId,
+                userName: userName,
+            }, (error) => {
+                if (error) {
+                    alert("댓글 추가 중 오류 발생: " + error.message);
+                } else {
+                    alert("성공적으로 댓글을 달았습니다");
+                    setNewComment('');
+                }
+            });
+        } catch (error) {
+            alert("유효하지 않는 토큰입니다.");
+            return;
+        }
     };
 
     const goToWrite = () => {
@@ -118,7 +143,9 @@ const Notice = () => {
                         <button onClick={addComment}>댓글 추가</button>
                         <ul>
                             {comments.map((comment) => (
-                                <li key={comment._id}>{comment.content}</li>
+                                <li key={comment._id}>{comment.userName}
+                                    <p>{comment.content}<span> ({new Date(comment.createdAt).toLocaleString()})</span></p>
+                                </li>
                             ))}
                         </ul>
                     </div>
