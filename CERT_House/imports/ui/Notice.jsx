@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTracker } from "meteor/react-meteor-data";
 import { NoticesCollection } from "/imports/api/NoticesCollection";
 import { CommentsCollection } from "/imports/api/CommentsCollection";
@@ -13,6 +13,7 @@ const Notice = () => {
     const [currentPage, setCurrentPage] = useState('Notice');
     const [currentNotice, setCurrentNotice] = useState(null);
     const [newComment, setNewComment] = useState('');
+    const [userName, setUserName] = useState('');
 
     const notices = useTracker(() => {
         const handle = Meteor.subscribe('notices');
@@ -50,6 +51,18 @@ const Notice = () => {
         }
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded = jwt_decode.jwtDecode(token);
+                setUserName(decoded.username);
+            } catch (error) {
+                console.error("유효하지 않은 토큰");
+            }
+        }
+    }, []); // 빈 배열을 두 번째 인자로 주어 한 번만 실행되도록 설정
+
     const addComment = () => {
         if (!newComment.trim()) {
             alert('댓글을 입력하세요.');
@@ -63,7 +76,7 @@ const Notice = () => {
         try {
             const decoded = jwt_decode.jwtDecode(token);
             const userId = decoded.userId;
-            const userName = decoded.username; 
+            const userName = decoded.username;
             console.log(userId, userName);
 
             Meteor.call('comments.insert', {
@@ -123,13 +136,16 @@ const Notice = () => {
                     <p className="current-notice-content">{currentNotice.content}</p> {/* 콘텐츠에 클래스 추가 */}
 
                     <button onClick={goBack}>뒤로 가기</button>
-
-                    <button onClick={() => {
-                        setCurrentPage('edit'); // 수정 페이지로 이동
-                        setCurrentNotice(currentNotice);
-                    }}>수정하기</button>
                     
-                    <button onClick={deleteNotice}>삭제</button>
+                    {userName === currentNotice.userName && (
+                        <>
+                            <button onClick={() => {
+                                setCurrentPage('edit');
+                                setCurrentNotice(currentNotice);
+                            }}>수정하기</button>
+                            <button onClick={deleteNotice}>삭제</button>
+                        </>
+                    )}
 
                     <div className="divier"></div>
                     <h2>댓글</h2>

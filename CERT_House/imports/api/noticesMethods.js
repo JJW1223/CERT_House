@@ -3,8 +3,13 @@ import { Meteor } from "meteor/meteor";
 import { NoticesCollection } from "./NoticesCollection";
 
 Meteor.methods({
-    "notices.insert"(title, content) {
-        return NoticesCollection.insertAsync({ title, content, createdAt: new Date() });
+    "notices.insert"(title, content, userName) { // 유저 추가
+        return NoticesCollection.insertAsync({ 
+            title, 
+            content, 
+            userName,
+            createdAt: new Date() 
+        });
     },
     "notices.delete"(noticeId) {
         if (!noticeId) {
