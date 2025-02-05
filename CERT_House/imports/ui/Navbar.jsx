@@ -12,6 +12,7 @@ const Navbar = ({ user, onLogout }) => {
         console.error('Logout failed:', err); // 로그아웃 실패 시 에러 로그
       } else {
         onLogout(); // 사용자 상태 초기화
+        localStorage.removeItem('token'); // token 삭제
         history.push('/'); // 메인 페이지로 리디렉션
       }
     });

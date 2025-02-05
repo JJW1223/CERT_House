@@ -51,8 +51,8 @@ const NoticeForm = ({ goBack }) => {
         
         {/* 버튼을 감싸는 div 추가 */}
         <div className="button-container">
-        <button type="button" onClick={goBack}>취소</button>
-        <button type="submit">등록</button>
+          <button type="button" onClick={goBack}>취소</button>
+          <button type="submit">등록</button>
         </div>
       </form>
     </div>

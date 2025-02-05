@@ -44,7 +44,7 @@ if (Meteor.isServer) {
       const token = jwt.sign(
         { userId: user._id, username: user.username },
         USER_KEY,
-        { expiresIn: '1h' }
+        { expiresIn: '30m' }
       );
 
       return { message: '로그인 성공!', token };

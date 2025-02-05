@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import Main from './Main.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
@@ -13,12 +14,30 @@ export const App = () => {
     setUser({ username }); // 사용자 상태 업데이트
   };
 
-  
-
   const handleLogout = () => {
     localStorage.removeItem('token'); // JWT 삭제
     setUser(null); // 사용자 상태 초기화
   };
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        try {
+            const decoded = jwt_decode.jwtDecode(token);
+            if (decoded.exp * 1000 < Date.now()) {
+                console.log("토큰 만료됨. 로그아웃 처리");
+                localStorage.removeItem('token');
+                setUser(null);
+            } else {
+                setUser({ username: decoded.username });
+            }
+        } catch (error) {
+            console.error("유효하지 않은 토큰: " + error);
+            localStorage.removeItem('token');
+            setUser(null);
+        }
+    }
+}, []);
 
   return (
     <Router>
