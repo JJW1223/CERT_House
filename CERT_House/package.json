@@ -1,9 +1,16 @@
 {
   "dependencies": {
     "@babel/runtime": "^7.26.0",
+    "buffer": "^6.0.3",
     "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "meteor-node-stubs": "^1.2.12",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^5.3.4"
+  },
+  "devDependencies": {
+    "file-loader": "^6.2.0"
   }
 }

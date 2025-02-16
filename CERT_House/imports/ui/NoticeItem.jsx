@@ -1,10 +1,13 @@
 import React from 'react';
 
-export const NoticeItem = ({ notice }) => {
+const NoticeItem = ({ notice }) => {
     return (
-        <li>
+        <li className="notice-item"> {/* CSS 클래스를 추가 */}
             <h2>{notice.title}</h2>
-            <p>{notice.content}</p>
+            <p>{notice.userName}</p>
+            <div className='divider'></div>
         </li>
     );
 };
+
+export default NoticeItem;

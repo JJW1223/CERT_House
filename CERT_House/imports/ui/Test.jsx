@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const Test = ({ goToLogin, goToSignup }) => {
+const Test = ({ goToLogin, goToSignup }) => {
 
     const [message, setMessage] = useState('');
 
@@ -27,3 +27,5 @@ export const Test = ({ goToLogin, goToSignup }) => {
     </div>
   );
 };
+
+export default Test;

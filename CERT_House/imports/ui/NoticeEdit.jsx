@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { NoticesCollection } from "/imports/api/NoticesCollection";
+import './NoticeForm.css'; // CSS 파일 임포트
 
-export const NoticeEdit = ({ notice, goBack }) => {
+const NoticeEdit = ({ notice, goBack }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
@@ -25,8 +25,9 @@ export const NoticeEdit = ({ notice, goBack }) => {
     };
 
     return (
-        <div>
+        <div className="notice-form-container"> {/* 기존 CSS 클래스 사용 */}
             <h1>공지사항 수정</h1>
+            <div className="divider"></div> {/* 선 추가 */}
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text" 
@@ -41,9 +42,13 @@ export const NoticeEdit = ({ notice, goBack }) => {
                     placeholder="내용" 
                     required 
                 />
-                <button type="submit">수정</button>
+                <div className="button-container"> {/* 버튼을 감싸는 div 추가 */}
+                    <button type="button" onClick={goBack}>취소</button>
+                    <button type="submit">수정</button>
+                </div>
             </form>
-            <button onClick={goBack}>취소</button>
         </div>
     );
 };
+
+export default NoticeEdit;

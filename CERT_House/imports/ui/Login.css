@@ -1,0 +1,73 @@
+/* Login.css */
+.login-container {
+    background-color: black; /* 배경색을 검정색으로 설정 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    padding: 40px; /* 내부 여백 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    max-width: 400px; /* 최대 너비 설정 */
+    margin: 100px auto; /* 중앙 정렬 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+}
+
+.login-container h2 {
+    text-align: center; /* 제목 중앙 정렬 */
+    margin-bottom: 20px; /* 제목 아래 여백 */
+}
+
+.login-container label {
+    display: block; /* 라벨을 블록 요소로 설정 */
+    margin-bottom: 5px; /* 라벨 아래 여백 */
+}
+
+.login-container input {
+    width: 100%; /* 입력창 너비 100% */
+    padding: 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: 1px solid #444; /* 입력창 테두리 색상 */
+    background-color: #222; /* 입력창 배경색 */
+    color: white; /* 입력창 글자색 */
+}
+
+.login-container input::placeholder {
+    color: #aaa; /* 플레이스홀더 색상 */
+}
+
+.login-container button {
+    width: 100%; /* 버튼 너비 100% */
+    padding: 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: none; /* 테두리 제거 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s; /* 호버 시 배경색 전환 효과 */
+}
+
+.login-container button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.login-container p {
+    text-align: center; /* 메시지 중앙 정렬 */
+    margin-top: 15px; /* 위쪽 여백 */
+}
+
+.login-container div {
+    margin-bottom: 15px; /* 입력 필드 사이의 여백 추가 */
+}
+
+/* Login.css 및 Signup.css에 추가할 CSS */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px); /* 아래에서 시작 */
+        opacity: 0; /* 시작할 때 투명 */
+    }
+    to {
+        transform: translateY(0); /* 원래 위치로 */
+        opacity: 1; /* 완전히 보이게 */
+    }
+}
+
+.login-container {
+    animation: slideIn 0.5s ease forwards; /* 애니메이션 적용 */
+}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
+import './Signup.css'; // CSS 파일 임포트
 
-export const Signup = () => {
+const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -20,7 +21,7 @@ export const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="signup-container"> {/* 로그인 UI를 감싸는 div 추가 */}
       <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -47,3 +48,5 @@ export const Signup = () => {
     </div>
   );
 };
+
+export default Signup;

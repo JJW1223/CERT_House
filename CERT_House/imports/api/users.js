@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 
 const USER_KEY = Meteor.settings.JWT_SECRET ; // 환경 변수 가져오기
 
-
 const Users = new Mongo.Collection('users');
 
 if (Meteor.isServer) {
@@ -45,7 +44,7 @@ if (Meteor.isServer) {
       const token = jwt.sign(
         { userId: user._id, username: user.username },
         USER_KEY,
-        { expiresIn: '1h' }
+        { expiresIn: '30m' }
       );
 
       return { message: '로그인 성공!', token };
@@ -60,6 +59,11 @@ if (Meteor.isServer) {
         throw new Meteor.Error('invalid-token', '유효하지 않은 토큰입니다.');
       }
     },
+
+    'users.logout'() {
+      return { message: '로그아웃 성공!' };
+    },
+
   });
 }
 

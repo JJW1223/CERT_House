@@ -1,0 +1,70 @@
+/* NoticeForm.css */
+.notice-form-container {
+    background-color: black; /* 배경색을 검정색으로 설정 */
+    color: white; /* 글자 색상을 흰색으로 설정 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 8px; /* 모서리를 둥글게 */
+    max-width: 100%; /* 최대 너비를 100%로 설정하여 화면에 꽉 차게 */
+    height: 100vh; /* 높이를 화면 전체로 설정 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+}
+
+.notice-form-container h1 {
+    margin-bottom: 20px; /* 제목 아래 여백 */
+    text-align: left; /* 제목 왼쪽 정렬 */
+}
+
+.divider {
+    border-top: 1px solid #444; /* 상단에 선 추가 */
+    margin: 10px 0; /* 위아래 여백 */
+}
+
+.notice-form-container input {
+    width: 100%; /* 입력창 너비 100% */
+    padding: 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: 1px solid #444; /* 테두리 색상 */
+    background-color: #222; /* 배경색 */
+    color: white; /* 글자색 */
+    margin-bottom: 15px; /* 아래 여백 */
+}
+
+.notice-form-container textarea {
+    width: 100%; /* 텍스트 영역 너비 100% */
+    padding: 10px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    border: 1px solid #444; /* 테두리 색상 */
+    background-color: #222; /* 배경색 */
+    color: white; /* 글자색 */
+    margin-bottom: 15px; /* 아래 여백 */
+    height: calc(100vh - 300px); /* 화면 높이에 따라 텍스트 영역 높이 조정 */
+    resize: none; /* 크기 조정 금지 */
+}
+
+.notice-form-container input::placeholder,
+.notice-form-container textarea::placeholder {
+    color: #aaa; /* 플레이스홀더 색상 */
+}
+
+/* 버튼을 나란히 배치하기 위한 스타일 */
+.button-container {
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: space-between; /* 버튼 간의 간격을 동일하게 설정 */
+    margin-top: 15px; /* 버튼 위 여백 */
+}
+
+.notice-form-container button {
+    background-color: #007bff; /* 버튼 배경색 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    padding: 10px 15px; /* 버튼 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s; /* 호버 시 배경색 전환 효과 */
+}
+
+.notice-form-container button:hover {
+    background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
