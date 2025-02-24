@@ -6,6 +6,7 @@ import Login from './Login.jsx';
 import Signup from './Signup.jsx';
 import Notice from './Notice'; // Notice 컴포넌트
 import Navbar from './Navbar'; // Navbar 컴포넌트 import
+import Community from './Community';
 
 export const App = () => {
   const [user, setUser] = useState(null); // 사용자 상태 관리
@@ -53,6 +54,7 @@ export const App = () => {
           />
           <Route path="/signup" component={Signup} />
           <Route path="/notices" component={Notice} />
+          <Route path="/communities" component={Community} />
           <Route path="/" exact>
             <Main />
           </Route> 

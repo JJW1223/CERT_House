@@ -22,6 +22,7 @@ const Navbar = ({ user, onLogout }) => {
     <nav>
       <Link to="/" className="cert">CERT</Link>
       <ul>
+        <li className="notices"><Link to="/communities">Community</Link></li>
         <li className="notices"><Link to="/notices">Notices</Link></li>
         <li className="login-signup">
           {user ? (
