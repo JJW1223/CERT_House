@@ -4,6 +4,8 @@ require("../imports/api/NoticesPublications");
 require("../imports/api/noticesMethods");
 require("../imports/api/CommentsPublications");
 require("../imports/api/commentsMethods");
+require("../imports/api/CommunityPublications");
+require("../imports/api/CommunityMethods");
 require("dotenv").config();
 import '../imports/api/users.js'; // users.js 파일을 가져옵니다.
 
