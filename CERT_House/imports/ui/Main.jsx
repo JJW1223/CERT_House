@@ -89,6 +89,22 @@ const Main = () => {
           <li>2021 - Excellence in Research</li>
         </ul>
       </section>
+
+      <hr></hr>
+
+      <section className="maker">
+        <div className="maker-left">
+          <h2>CERT</h2>
+          <p>Created by 조진우, 엄지현, 김채은, 임수현, 김민서, 전상민 and 박건우</p>
+          <br></br>
+          <h3>동아리방</h3>
+          <p>충청북도 청주시 서원구 성봉로242번길 57 충북대 E8-1 340호</p>
+        </div>
+        <div className="maker-right">
+          <h3>회장</h3>
+          <p>조진우 gurugikr23@naver.com</p>
+        </div>
+      </section>
     </div>
   );
 };
