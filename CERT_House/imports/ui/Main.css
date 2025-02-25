@@ -238,9 +238,31 @@
 .awards{
 
     color: white;
-    margin-bottom :300px;
+    margin-bottom :50px;
 }
 .awards h2{
 
     font-size: 2.5rem;
+}
+.maker {
+    color: white;
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+    margin-right: 50px;
+}
+.maker hr{
+    margin-bottom: 15px;
+}
+.maker p{
+    opacity: 0.8;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.maker-left {
+    flex: 7;
+}
+.maker-right {
+    flex: 2;
+    text-align: left;
 }
